@@ -1,31 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "keyword.h"
+
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 int is_whitespace(char word){
 	if (word ==' ')
 	{
-		return 0;
+		return 1;
 	}
 	else if (word =='\n')
 	{
-		return 0;
+		return 1;
 	}
 	else if (word =='\r')
 	{
-		return 0;
+		return 1;
 	}
 	else if (word =='\t')
 	{
-		return 0;
+		return 1;
 	}
-	else if (word ==')')
+	else if (word =='(')
 	{
-		return 0;
+		return 1;
 	}
 	else
 	{
-		return 1;
+		return 0;
 	}
 }
 
@@ -36,7 +38,7 @@ int fget_word(FILE *fp, char* word)
 	while ((c = fgetc(fp)) != EOF) 
 	{
 		if (is_whitespace(c) == 0)
-		break;
+			break;
 	}
 	if (c == EOF)
 	{
@@ -74,8 +76,10 @@ int main(int argc, char *argv[]) {
 	
 	while (fget_word(fp, filepath) != 0)
 	{
-		printf("%s\n", filepath);
+		//printf("%s/", filepath);
+		count_word(filepath);
 	}
+	print_word();
 	//printf("올바른 경로입니다.\n");(테스트용) 
 	//파일 내 단어 분석();
 
